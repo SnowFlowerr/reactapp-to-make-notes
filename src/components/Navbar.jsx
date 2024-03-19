@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Navbar({ note, setNote, arrNotes, setArrNotes }) {
     const [add, setAdd] = useState(true);
     const [search, setSearch] = useState(false);
-    const [searchInp, setSearchInp] = useState("");
+    const [searchInp, setSearchInp] = useState({text:"",count:true});
     const [searchArr, setSearchArr] = useState([]);
     const [update, setUpdate] = useState({ state: false, index: -1 });
     const success = (message) => {
@@ -36,7 +36,7 @@ export default function Navbar({ note, setNote, arrNotes, setArrNotes }) {
         e.preventDefault();
         setAdd(true)
         setSearch(false);
-        // handleCancel(e)
+        handleCancel(e)
     }
     function handleChange(e) {
         e.preventDefault();
@@ -74,15 +74,24 @@ export default function Navbar({ note, setNote, arrNotes, setArrNotes }) {
     }
     function handleSearchChange(e) {
         e.preventDefault()
-        setSearchInp(e.target.value)
+        setSearchInp( {text:e.target.value,count:searchInp.count})
     }
     function handleSearch(e) {
         e.preventDefault()
-        if (searchInp.trim() !== "") {
-            setSearchArr(arrNotes)
-            setArrNotes(arrNotes.filter((ele) => ele.title.toLowerCase().trim().includes(searchInp.toLowerCase().trim())))
+        if (searchInp.count===true) {
+            if(searchInp.text.trim() !== ""){
+                setSearchArr(arrNotes)
+                setArrNotes(arrNotes.filter((ele) => ele.title.toLowerCase().trim().includes(searchInp.text.toLowerCase().trim())))
+                setSearchInp({text:"",count:false})
+            }
+            else{
+                warning(" Enter the Search Input")
+            }
         }
-        setSearchInp("")
+        else{
+            warning(" First click on clear")
+        }
+        // setSearchInp({text:"",count:1})
         // setSearch(false);
     }
     function handleSearchInput(e) {
@@ -92,11 +101,11 @@ export default function Navbar({ note, setNote, arrNotes, setArrNotes }) {
     }
     function handleCancel(e) {
         e.preventDefault()
-        // if (searchInp !== "") {
+        if (searchInp.count===false) {
             setArrNotes(searchArr);
-        // }
-        setSearchInp("")
+        }
         // setSearch(false);
+        setSearchInp({text:"",count:true})
     }
     function handleUpdate(e) {
         e.preventDefault()
@@ -145,7 +154,7 @@ export default function Navbar({ note, setNote, arrNotes, setArrNotes }) {
                     {search && (
                         <div className={styles.inputBox}>
                             <form >
-                                <input type="text" placeholder=' Search' onChange={handleSearchChange} className={styles.search} value={searchInp} id='title' />
+                                <input type="text" placeholder=' Search' onChange={handleSearchChange} className={styles.search} value={searchInp.text} id='title' />
                                 <button onClick={handleSearch} ><i class="fa-solid fa-magnifying-glass"></i></button>
                                 <button onClick={handleCancel} ><i class="fa-solid fa-xmark"></i></button>
                             </form>

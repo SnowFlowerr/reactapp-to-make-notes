@@ -3,10 +3,11 @@
     height: 86vh;
     margin-top: 3vh;
     margin-left: 2vw;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px lightgreen;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
     overflow: auto;
     scrollbar-width: none;
+    z-index: 1;
 }
 .addNotesBtn{
     /* border: 2px solid black; */
@@ -14,19 +15,19 @@
     font-size: 1.3vw;
     text-align: center;
     margin: 0.1vw;
-    width: 2.6vw;
-    height: 2.6vw;
+    width: 2.5vw;
+    height: 2.5vw;
     border-radius: 100%;
     font-weight: 900;
-    margin-top: 2vh;
+    margin-top: 1vh;
 }
 .searchBtn{
     background-color: rgb(215, 215, 215);
     font-size: 1.3vw;
     text-align: center;
     margin: 5px;
-    width: 2.6vw;
-    height: 2.6vw;
+    width: 2.5vw;
+    height: 2.5vw;
     border-radius: 100%;
     font-weight: 900;
 }
@@ -44,7 +45,7 @@
     width: 19vw;
     margin-left: 0.35vw;
     margin-top: 0.35vw;
-    padding-bottom: 0.3vw;
+    padding-bottom: 0.3vh;
 }
 .inputBox{
     /* border: 2px solid black; */
@@ -81,7 +82,7 @@
     border-radius: 5px;
 }
 .titlesBox{
-    margin-top: 42%;
+    margin-top: 36%;
 }
 .deleteBtn{
     font-size: 1.3vw;
